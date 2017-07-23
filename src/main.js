@@ -1,20 +1,10 @@
 import 'babel-polyfill'
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import App from './App.vue'
-import Home from './views/Home.vue'
 import common from './common';
+import router from './router'
 
-Vue.use(VueRouter);
 Vue.mixin(common);
-
-const routes = [
-    { path: '/', component: Home }
-];
-
-const router = new VueRouter({
-    routes
-});
 
 new Vue({
     el: '#app',
@@ -23,6 +13,5 @@ new Vue({
     mounted() {
         // Remove page loader
         document.getElementById('page-loader').outerHTML = '';
-
     }
 });
