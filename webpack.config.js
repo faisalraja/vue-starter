@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const packageDependencies = require('./package.json').dependencies;
 
 const extractSass = new ExtractTextPlugin({
     filename: 'css/style.css',
@@ -10,16 +11,21 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    entry: [
-        './src/main.js',
-        // './src/scss/style.sass'
-    ],
+    entry: {
+        app: [
+            './src/main.js',
+            './src/style.sass'
+        ],
+        vendor: Object.keys(packageDependencies)
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: 'build.js'
+        filename: 'bundle.js'
     },
     plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js'}),
         new HtmlWebpackPlugin({
             title: 'Vue Starter',
             filename: 'index.html',
@@ -59,21 +65,16 @@ module.exports = {
             {
                 test: /\.(svg|jpe?g|gif|png)$/,
                 exclude: /node_modules/,
-                loader:'url-loader?limit=1024&name=img/[name].[ext]'
+                loader: 'url-loader?limit=1024&name=img/[name].[ext]'
             },
             {
-                test: /\.(woff|woff2|eot|ttf|svg)$/,
-                exclude: /node_modules/,
-                loader: 'url-loader?limit=1024&name=fonts/[name].[ext]'
+                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                loader: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
     },
     resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js',
-            'vue-router$': 'vue-router/dist/vue-router.esm.js',
-            'axios': 'axios/dist/axios.min.js'
-        }
+        alias: {}
     },
     devServer: {
         historyApiFallback: true,
@@ -82,11 +83,12 @@ module.exports = {
     performance: {
         hints: false
     },
-    devtool: '#eval-source-map'
+    devtool: '#eval-source-map',
+    target: 'web'
 };
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map'
+    module.exports.devtool = '#source-map';
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.DefinePlugin({
@@ -95,7 +97,7 @@ if (process.env.NODE_ENV === 'production') {
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
+            sourceMap: false,
             compress: {
                 warnings: false
             }

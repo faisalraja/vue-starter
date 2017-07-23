@@ -1,7 +1,8 @@
+import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import Home from './page/Home.vue'
+import Home from './views/Home.vue'
 import common from './common';
 
 Vue.use(VueRouter);
