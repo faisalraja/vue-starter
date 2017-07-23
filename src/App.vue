@@ -13,7 +13,8 @@
         <loader></loader>
         <img src="./img/logo.png" />
         <p>
-            <router-link to="/">Home</router-link>
+            <router-link :to="{name: 'home'}">Home</router-link>
+            <router-link :to="{name: 'about'}">About</router-link>
         </p>
         <router-view></router-view>
 
