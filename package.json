@@ -9,10 +9,11 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "axios": "latest",
+    "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
-    "vue": "latest",
-    "vue-router": "latest"
+    "vue": "^2.4.2",
+    "vue-router": "^2.7.0",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -33,6 +34,6 @@
     "vue-loader": "^12.2.2",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.6.0"
+    "webpack-dev-server": "^2.6.1"
   }
 }

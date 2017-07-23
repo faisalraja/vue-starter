@@ -14,7 +14,7 @@ module.exports = {
     entry: {
         app: [
             './src/main.js',
-            './src/style.sass'
+            './src/scss/style.sass'
         ],
         vendor: Object.keys(packageDependencies)
     },
@@ -65,7 +65,7 @@ module.exports = {
             {
                 test: /\.(svg|jpe?g|gif|png)$/,
                 exclude: /node_modules/,
-                loader: 'url-loader?limit=1024&name=img/[name].[ext]'
+                loader: 'file-loader?name=img/[name].[ext]'
             },
             {
                 test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,

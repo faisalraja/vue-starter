@@ -1,18 +1,16 @@
 <script>
+    import Loader from './component/Loader.vue'
+
     export default {
-        name: 'home'
+        components: {
+            Loader
+        }
     }
 </script>
 
-<style lang="sass">
-    @import 'style'
-
-    h1
-        color: $gray
-</style>
-
 <template>
     <div id="app">
+        <loader></loader>
         <img src="./img/logo.png" />
         <p>
             <router-link to="/">Home</router-link>
