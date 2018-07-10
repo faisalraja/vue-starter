@@ -1,9 +1,4 @@
 {
-  "presets": [
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions", "ie >= 11"]
-      }
-    }]
-  ]
+  "presets": ["env"],
+  "plugins": ["syntax-dynamic-import"]
 }

@@ -1,6 +1,13 @@
+.idea
 .DS_Store
+.history
 node_modules/
-dist/
 npm-debug.log
 yarn-error.log
-.idea
+dist/
+package-lock.json
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json

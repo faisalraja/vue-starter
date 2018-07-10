@@ -1,4 +1,5 @@
-import 'babel-polyfill'
+// uncomment below if you need old browser support
+// import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App.vue'
 import common from './common';
